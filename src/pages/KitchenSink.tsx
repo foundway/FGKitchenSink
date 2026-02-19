@@ -13,11 +13,128 @@ import { Modal } from '../components/ui/Modal';
 import { Container } from '../components/layout/Container';
 import { Grid } from '../components/layout/Grid';
 import { Tabs } from '../components/layout/Tabs';
+import { Sidebar } from '../components/layout/Sidebar';
+import { SettingsTree } from '../components/layout/SettingsTree';
+import type { SettingTreeSection } from '../components/layout/SettingsTree';
+import { SettingsNav } from '../components/layout/SettingsNav';
+import type { SettingsNavItem } from '../components/layout/SettingsNav';
 import './KitchenSink.css';
 
 export function KitchenSink() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedRadio, setSelectedRadio] = useState('option1');
+  const [settingsPanelId, setSettingsPanelId] = useState<string>('general');
+  const [settingTreeTab, setSettingTreeTab] = useState('panel');
+  const [settingTreeSearch, setSettingTreeSearch] = useState('');
+  const [titleVal, setTitleVal] = useState('3D');
+  const [fixedFrame, setFixedFrame] = useState('');
+  const [displayFrame, setDisplayFrame] = useState('scene');
+  const [followMode, setFollowMode] = useState('Position');
+  const [showRenderStats, setShowRenderStats] = useState(false);
+  const [backgroundColor, setBackgroundColor] = useState('#000000');
+  const [labelScale, setLabelScale] = useState('1');
+  const [ignoreCollada, setIgnoreCollada] = useState(false);
+  const [meshUpAxis, setMeshUpAxis] = useState('Z-up');
+  const [syncCamera, setSyncCamera] = useState(false);
+  const [distance, setDistance] = useState('2.204');
+  const [view3d, setView3d] = useState(false);
+  const [targetX, setTargetX] = useState('1.078');
+  const [targetY, setTargetY] = useState('0.181');
+  const [targetZ, setTargetZ] = useState('0');
+  const [theta, setTheta] = useState('58.3');
+
+  const settingsNavItems: SettingsNavItem[] = [
+    { id: 'general', label: 'General' },
+    {
+      id: 'user',
+      label: 'User',
+      children: [
+        { id: 'user-general', label: 'General' },
+        { id: 'user-extensions', label: 'Extensions' },
+      ],
+    },
+    { id: 'workspace', label: 'Workspace' },
+    { id: 'privacy', label: 'Privacy & Security' },
+  ];
+
+  function getSettingsPanelLabel(id: string): string {
+    for (const item of settingsNavItems) {
+      if (item.id === id) return item.label;
+      for (const child of item.children ?? []) {
+        if (child.id === id) return child.label;
+      }
+    }
+    return id;
+  }
+
+  const settingTreeSections: SettingTreeSection[] = [
+    {
+      id: 'frame',
+      label: 'Frame',
+      expanded: true,
+      children: [
+        { type: 'text', id: 'title', label: 'Title', value: titleVal, onChange: setTitleVal },
+        {
+          type: 'select',
+          id: 'fixed-frame',
+          label: 'Fixed frame',
+          value: fixedFrame,
+          options: [{ value: '', label: '' }, { value: 'world', label: 'world' }, { value: 'map', label: 'map' }],
+          onChange: setFixedFrame,
+        },
+        {
+          type: 'select',
+          id: 'display-frame',
+          label: 'Display frame',
+          value: displayFrame,
+          options: [{ value: 'scene', label: 'scene' }, { value: 'world', label: 'world' }],
+          onChange: setDisplayFrame,
+          warning: true,
+        },
+        {
+          type: 'select',
+          id: 'follow-mode',
+          label: 'Follow mode',
+          value: followMode,
+          options: [{ value: 'Position', label: 'Position' }, { value: 'Follow', label: 'Follow' }],
+          onChange: setFollowMode,
+        },
+      ],
+    },
+    {
+      id: 'scene',
+      label: 'Scene',
+      expanded: true,
+      children: [
+        { type: 'toggle', id: 'show-render-stats', label: 'Show render stats', value: showRenderStats, onChange: setShowRenderStats },
+        { type: 'color', id: 'background', label: 'Background', value: backgroundColor, onChange: setBackgroundColor },
+        { type: 'number', id: 'label-scale', label: 'Label scale', value: labelScale, onChange: setLabelScale },
+        { type: 'toggle', id: 'ignore-collada', label: 'Ignore COLLADA <up_axis>', value: ignoreCollada, onChange: setIgnoreCollada },
+        {
+          type: 'select',
+          id: 'mesh-up-axis',
+          label: 'Mesh up-axis',
+          value: meshUpAxis,
+          options: [{ value: 'Z-up', label: 'Z-up' }, { value: 'Y-up', label: 'Y-up' }],
+          onChange: setMeshUpAxis,
+        },
+      ],
+    },
+    {
+      id: 'view',
+      label: 'View',
+      expanded: true,
+      children: [
+        { type: 'toggle', id: 'sync-camera', label: 'Sync camera', value: syncCamera, onChange: setSyncCamera },
+        { type: 'number', id: 'distance', label: 'Distance', value: distance, onChange: setDistance },
+        { type: 'toggle', id: '3d-view', label: '3D view', value: view3d, onChange: setView3d },
+        { type: 'number', id: 'target-x', label: 'Target X', value: targetX, onChange: setTargetX },
+        { type: 'number', id: 'target-y', label: 'Y', value: targetY, onChange: setTargetY },
+        { type: 'number', id: 'target-z', label: 'Z', value: targetZ, onChange: setTargetZ },
+        { type: 'number', id: 'theta', label: 'Theta', value: theta, onChange: setTheta },
+      ],
+    },
+  ];
 
   const sections = [
     { id: 'typography', label: 'Typography' },
@@ -30,6 +147,7 @@ export function KitchenSink() {
     { id: 'tables', label: 'Tables' },
     { id: 'modals', label: 'Modals' },
     { id: 'tabs', label: 'Tabs' },
+    { id: 'setting-tree', label: 'Setting Tree' },
     { id: 'templates', label: 'Templates' },
   ];
 
@@ -97,18 +215,8 @@ export function KitchenSink() {
                 </Card>
                 <Card>
                   <div className="color-swatch" style={{ backgroundColor: '#29bee7' }}></div>
-                  <p><strong>Alternative</strong></p>
+                  <p><strong>Secondary</strong></p>
                   <p className="text-secondary">#29bee7</p>
-                </Card>
-                <Card>
-                  <div className="color-swatch" style={{ backgroundColor: '#7164c4' }}></div>
-                  <p><strong>Primary Hover</strong></p>
-                  <p className="text-secondary">#7164c4</p>
-                </Card>
-                <Card>
-                  <div className="color-swatch" style={{ backgroundColor: '#5933f2' }}></div>
-                  <p><strong>Primary Selected</strong></p>
-                  <p className="text-secondary">#5933f2</p>
                 </Card>
                 <Card>
                   <div className="color-swatch" style={{ backgroundColor: '#e1e1e4' }}></div>
@@ -388,6 +496,31 @@ export function KitchenSink() {
             </div>
           </section>
 
+          <section id="setting-tree" className="section">
+            <h2 className="section-title">Setting Tree</h2>
+            <div className="section-content">
+              <p className="text-secondary" style={{ marginBottom: 'var(--spacing-md)' }}>
+                Panel-style settings with tabs, search, and collapsible sections. Matches design_mirror (light/dark). Toggle theme to see both modes.
+              </p>
+              <div className="setting-tree-demo-wrap">
+                <SettingsTree
+                  tabs={[
+                    { id: 'panel', label: 'Panel' },
+                    { id: 'topics', label: 'Topics' },
+                    { id: 'problems', label: 'Problems' },
+                  ]}
+                  activeTabId={settingTreeTab}
+                  onTabChange={setSettingTreeTab}
+                  title="3D panel"
+                  searchPlaceholder="Search panel settings..."
+                  searchValue={settingTreeSearch}
+                  onSearchChange={setSettingTreeSearch}
+                  sections={settingTreeSections}
+                />
+              </div>
+            </div>
+          </section>
+
           <section id="templates" className="section">
             <h2 className="section-title">Layout Templates</h2>
             <div className="section-content">
@@ -444,6 +577,48 @@ export function KitchenSink() {
                       </tr>
                     </tbody>
                   </Table>
+                </div>
+              </Card>
+              <Card>
+                <h3>Admin Side Bar</h3>
+                <p className="text-secondary" style={{ marginBottom: 'var(--spacing-md)' }}>
+                  Admin sidebar with tree navigation; each item’s content is shown in the panel to the right.
+                </p>
+                <div className="template-settings">
+                  <Sidebar>
+                    <SettingsNav
+                      items={settingsNavItems}
+                      selectedId={settingsPanelId}
+                      onSelect={setSettingsPanelId}
+                    />
+                  </Sidebar>
+                  <div className="template-settings-main" aria-label="Content for selected item">
+                    <header className="template-settings-header">
+                      <h4 className="template-settings-title">
+                        {getSettingsPanelLabel(settingsPanelId)}
+                      </h4>
+                    </header>
+                    <div className="template-settings-content">
+                      {settingsPanelId === 'general' && (
+                        <>
+                          <Input label="Application theme" placeholder="System default" />
+                          <Select label="Language" options={[{ value: 'en', label: 'English' }, { value: 'es', label: 'Spanish' }]} />
+                        </>
+                      )}
+                      {settingsPanelId === 'user-general' && (
+                        <>
+                          <Input label="Display name" placeholder="Your name" />
+                          <Input label="Email" type="email" placeholder="you@example.com" />
+                        </>
+                      )}
+                      {settingsPanelId === 'user-extensions' && (
+                        <p className="text-secondary">Manage installed extensions and browse the marketplace.</p>
+                      )}
+                      {!['general', 'user-general', 'user-extensions'].includes(settingsPanelId) && (
+                        <p className="text-secondary">Panel content for “{settingsPanelId}” would go here.</p>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </Card>
             </div>

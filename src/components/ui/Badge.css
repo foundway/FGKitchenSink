@@ -6,7 +6,7 @@
   font-weight: var(--font-weight-semibold);
   font-family: var(--font-family-base);
   line-height: var(--line-height-xs);
-  border-radius: var(--radius-md);
+  border-radius: 9999px;
   white-space: nowrap;
 }
 
