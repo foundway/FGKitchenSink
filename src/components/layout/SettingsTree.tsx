@@ -1,4 +1,4 @@
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
 import './SettingsTree.css';
 
 export interface SettingTreeTab {
@@ -23,8 +23,8 @@ export type SettingRow =
       onChange: (v: string) => void;
       warning?: boolean;
     }
-  | { type: 'toggle'; id: string; label: string; value: boolean; onChange: (v: boolean) => void }
-  | { type: 'color'; id: string; label: string; value: string; onChange: (v: string) => void };
+  | { type: 'toggle'; id: string; label: string; value: boolean; onChange: (v: boolean) => void; warning?: boolean }
+  | { type: 'color'; id: string; label: string; value: string; onChange: (v: string) => void; warning?: boolean };
 
 export interface SettingTreeSection {
   id: string;

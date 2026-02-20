@@ -1,0 +1,17 @@
+.code-snippet-modal-body {
+  max-height: 70vh;
+  overflow: auto;
+  margin: calc(-1 * var(--spacing-xl));
+  padding: var(--spacing-xl);
+}
+
+.code-snippet-modal-body pre {
+  margin: 0;
+  padding: var(--spacing-md) !important;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.modal-content.modal-content--wide {
+  max-width: 48rem;
+}
