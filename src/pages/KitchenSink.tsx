@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { MdCode } from 'react-icons/md';
 import { ThemeToggle } from '../components/theme/ThemeToggle';
 import { Button } from '../components/ui/Button';
 import { CodeSnippetModal } from '../components/ui/CodeSnippetModal';
@@ -78,8 +79,8 @@ export function KitchenSink() {
           <section id="typography" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Typography</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Typography', code: typographyDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Typography', code: typographyDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -90,8 +91,8 @@ export function KitchenSink() {
           <section id="colors" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Color Palette</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Color Palette', code: colorsDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Color Palette', code: colorsDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -102,8 +103,8 @@ export function KitchenSink() {
           <section id="spacing" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Spacing Scale</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Spacing Scale', code: spacingDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Spacing Scale', code: spacingDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -114,8 +115,8 @@ export function KitchenSink() {
           <section id="buttons" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Buttons</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Buttons', code: buttonDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Buttons', code: buttonDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -126,8 +127,8 @@ export function KitchenSink() {
           <section id="forms" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Form Controls</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Form Controls', code: formsDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Form Controls', code: formsDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -138,8 +139,8 @@ export function KitchenSink() {
           <section id="cards" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Cards</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Cards', code: cardsDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Cards', code: cardsDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -150,8 +151,8 @@ export function KitchenSink() {
           <section id="badges" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Badges</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Badges', code: badgesDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Badges', code: badgesDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -162,8 +163,8 @@ export function KitchenSink() {
           <section id="tables" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Tables</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Tables', code: tablesDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Tables', code: tablesDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -174,8 +175,8 @@ export function KitchenSink() {
           <section id="modals" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Modals</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Modals', code: modalsDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Modals', code: modalsDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -186,8 +187,8 @@ export function KitchenSink() {
           <section id="tabs" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Tabs</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Tabs', code: tabsDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Tabs', code: tabsDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -198,8 +199,8 @@ export function KitchenSink() {
           <section id="setting-tree" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Setting Tree</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Setting Tree', code: settingTreeDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Setting Tree', code: settingTreeDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
@@ -215,8 +216,8 @@ export function KitchenSink() {
           <section id="templates" className="section">
             <div className="section-header-row">
               <h2 className="section-title">Layout Templates</h2>
-              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Layout Templates', code: templatesDemoCode })}>
-                View code
+              <Button variant="ghost" size="sm" onClick={() => setCodeSnippet({ title: 'Layout Templates', code: templatesDemoCode })} style={{ padding: '8px', width: '40px', height: '40px' }}>
+                <MdCode style={{ width: '20px', height: '20px' }} />
               </Button>
             </div>
             <div className="section-content">
